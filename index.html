@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#ffffff">
+<link rel="manifest" href="./manifest.webmanifest">
+<link rel="icon" href="./icon.svg" type="image/svg+xml">
+<title>🤍다빈 고정지출🤍</title>
+<style>
+:root{--bg:#fff;--card:#fff;--ink:#302d31;--muted:#89818a;--accent:#d69ab1;--soft:#fff3f7;--line:#eee7eb;--shadow:0 7px 22px rgba(50,30,40,.06)}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif}
+body[data-theme="pink"]{--bg:#fff4f8;--card:#fff;--ink:#493740;--muted:#a18b95;--accent:#e49bb7;--soft:#fce7ef;--line:#f1dce4}
+body[data-theme="dots"]{background-color:#fff;background-image:radial-gradient(#222 1px,transparent 1px);background-size:17px 17px;--bg:#fff;--card:#fff;--ink:#292629;--muted:#777;--accent:#292629;--soft:#f3f3f3;--line:#e8e8e8}
+.wrap{max-width:760px;margin:auto;padding:16px 14px 38px}header{background:var(--card);border-radius:23px;padding:21px 12px 18px;text-align:center;box-shadow:var(--shadow);margin-bottom:13px}
+h1{font-size:24px;letter-spacing:-.8px;margin:0 0 5px}.subtitle{font-size:12px;color:var(--muted)}.cycle-label{display:inline-block;margin-top:12px;background:var(--soft);border-radius:30px;padding:7px 13px;font-size:12px}
+nav{display:flex;gap:5px;overflow:auto;background:var(--card);padding:6px;border-radius:15px;box-shadow:var(--shadow);margin-bottom:13px}nav button{flex:1;white-space:nowrap;border:0;background:transparent;color:var(--muted);padding:10px 8px;border-radius:11px;font-size:12px;font-weight:700}nav button.active{background:var(--soft);color:var(--ink)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:19px;padding:15px;margin-bottom:12px;box-shadow:var(--shadow)}h2{font-size:16px;margin:0 0 12px}.headrow{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:10px}.headrow h2{margin:0}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.stat{padding:12px;background:var(--soft);border-radius:14px;min-width:0}.stat small{display:block;color:var(--muted);font-size:11px;margin-bottom:5px}.stat strong{font-size:18px;overflow-wrap:anywhere}
+label{display:block;font-size:12px;color:var(--muted);margin-bottom:5px}input,select{width:100%;min-width:0;border:1px solid var(--line);border-radius:11px;padding:11px;background:var(--card);color:var(--ink);font:inherit}.field{margin-bottom:11px}.row{display:flex;gap:8px;align-items:end}.row>*{flex:1;min-width:0}
+.btn{border:0;border-radius:11px;background:var(--accent);color:white;padding:11px 13px;font-weight:700;font-size:13px;cursor:pointer}.btn.soft{background:var(--soft);color:var(--ink)}.btn.line{background:transparent;border:1px solid var(--line);color:var(--ink)}.btn.mini{padding:7px 9px;font-size:11px}
+.muted{font-size:11px;color:var(--muted);line-height:1.6}.hidden{display:none!important}.item{display:flex;align-items:center;gap:9px;padding:12px 0;border-bottom:1px solid var(--line)}.item:last-child{border-bottom:0}.item-main{flex:1;min-width:0}.item-name{font-size:13px;font-weight:700}.meta{font-size:11px;color:var(--muted);margin-top:4px;line-height:1.5}.money{font-size:12px;font-weight:700;text-align:right;white-space:nowrap}.check{width:20px;height:20px;accent-color:var(--accent);flex:none}.done{opacity:.55}.done .item-name{text-decoration:line-through}.tag{font-size:10px;background:var(--soft);border-radius:20px;padding:3px 7px;margin-left:4px;font-weight:500}.empty{text-align:center;color:var(--muted);font-size:12px;padding:18px 5px}.bar{height:7px;background:var(--soft);border-radius:20px;overflow:hidden}.bar>div{height:100%;background:var(--accent);width:0}
+.theme-options{display:flex;gap:8px}.theme-option{flex:1;border:2px solid var(--line);border-radius:13px;padding:9px 5px;background:#fff;color:#333;font-size:11px;font-weight:700}.theme-option.selected{border-color:var(--accent)}.swatch{height:29px;border-radius:8px;margin-bottom:7px;border:1px solid #eee}.sw-white{background:#fff}.sw-pink{background:#fff0f5}.sw-dots{background:#fff radial-gradient(#222 1px,transparent 1px);background-size:8px 8px}
+.modal{position:fixed;inset:0;background:#0006;display:none;align-items:flex-end;justify-content:center;padding:10px;z-index:5}.modal.show{display:flex}.modalbox{width:min(100%,560px);max-height:92vh;overflow:auto;background:var(--card);padding:19px;border-radius:21px}.actions{display:flex;gap:8px;margin-top:12px}.actions>*{flex:1}.history-row{padding:12px 0;border-bottom:1px solid var(--line)}.history-row:last-child{border-bottom:0}footer{text-align:center;color:var(--muted);font-size:11px;padding:12px}
+@media(min-width:600px){.modal{align-items:center}.grid{grid-template-columns:repeat(4,1fr)}}
+
+.authline{display:flex;justify-content:center;align-items:center;gap:8px;flex-wrap:wrap;margin-top:10px;font-size:11px;color:var(--muted)}
+.authline .btn{padding:6px 10px;font-size:11px}.login-card{text-align:center;padding:24px 18px}.google-mark{display:inline-flex;align-items:center;gap:9px;justify-content:center}.login-card h2{margin-bottom:8px}.login-card p{max-width:420px;margin:0 auto 16px}
+.sync-dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:#8abf91;margin-right:5px}
+</style>
+</head>
+<body data-theme="white">
+<div class="wrap">
+<header><h1>🤍다빈 고정지출🤍</h1><div class="subtitle">‎꒰⸝⸝ɞ̴̶̷ ·̫ ‹⸝⸝ᐡ ꒱~☆</div><div class="cycle-label" id="cycleLabel">월급 관리 기간을 설정해 주세요</div>
+<div class="authline"><span id="cloudStatus"><span class="sync-dot"></span>로그인 전</span><span id="cloudEmail"></span><button id="logoutBtn" class="btn mini line hidden" onclick="window.cloudSignOut()">로그아웃</button></div></header>
+<div id="loginPanel" class="card login-card"><h2>다빈의 개인 가계부 🤍</h2><p class="muted">구글 계정으로 로그인하면 이 가계부의 기록이 온라인에 저장돼요. 휴대폰을 바꿔도 같은 계정으로 이어서 사용할 수 있어요.</p><button class="btn" onclick="window.cloudSignIn()"><span class="google-mark">G&nbsp; Google 계정으로 로그인</span></button><p class="muted" style="margin-top:13px">처음 접속할 때 기존 기기의 기록이 클라우드로 옮겨져요.</p></div>
+<div id="appContent" class="hidden">
+<nav><button class="active" data-tab="home">🏠 홈</button><button data-tab="expenses">💗 지출 항목</button><button data-tab="history">🗂️ 지난 지출</button><button data-tab="settings">⚙️ 설정</button></nav>
+<main>
+<section id="home">
+<div class="card"><div class="headrow"><h2 id="summaryTitle">이번 월급 관리</h2><button class="btn mini soft" onclick="openPeriod()">기간 설정</button></div>
+<div class="grid"><div class="stat"><small>예상 고정지출 합계</small><strong id="expectedSum">0원</strong></div><div class="stat"><small>실제 지출 확정 합계</small><strong id="actualSum">0원</strong></div><div class="stat"><small>미결제 항목</small><strong id="unpaidCount">0건</strong></div><div class="stat"><small>결제 완료 항목</small><strong id="paidCount">0건</strong></div></div>
+<p class="muted" id="periodInfo">시작일과 종료일을 직접 지정하면 해당 기간의 지출을 관리할 수 있어요.</p></div>
+<div class="card"><div class="headrow"><h2>이번 기간 지출 체크</h2><span class="muted" id="progressText">0 / 0 완료</span></div><div class="bar"><div id="progressBar"></div></div><div id="homeList"></div></div>
+<div class="card"><h2>관리 기준 안내</h2><p class="muted">월급이 들어온 날짜를 시작일로, 다음 월급일 전날을 종료일로 직접 지정해 주세요. 예를 들어 10월 10일 월급이면 10월 월급 관리로 표시되고, 관리 기간은 10월 10일~11월 9일이에요. 기간이 27~34일 등 매번 달라도 괜찮아요.</p></div>
+</section>
+<section id="expenses"><div class="card"><div class="headrow"><h2>고정지출 항목 관리</h2><button class="btn mini" onclick="openExpense()">＋ 항목 추가</button></div><p class="muted">항목은 매월 반복해서 사용돼요. 결제 날짜와 금액은 필요할 때 수정할 수 있어요. ‘고정 금액’은 확정 금액, ‘유동 금액’은 예상 금액으로 시작합니다.</p><div id="expenseList"></div></div></section>
+<section id="history"><div class="card"><div class="headrow"><h2>지난 월급 지출 기록</h2><span class="muted">월급 시작월 기준</span></div><div id="historyList"></div></div></section>
+<section id="settings">
+<div class="card"><h2>화면 테마</h2><div class="theme-options"><button class="theme-option" data-theme="white"><div class="swatch sw-white"></div>White</button><button class="theme-option" data-theme="pink"><div class="swatch sw-pink"></div>Pink</button><button class="theme-option" data-theme="dots"><div class="swatch sw-dots"></div>Black Dot</button></div></div>
+<div class="card"><h2>데이터 백업</h2><p class="muted">로그인한 구글 계정의 클라우드에 자동 저장돼요. 기기를 바꿔도 같은 계정으로 로그인하면 기록을 이어서 볼 수 있어요. 중요한 자료는 백업 파일도 별도로 보관하는 것을 권장해요.</p><div class="row"><button class="btn soft" onclick="exportBackup()">백업 파일 저장</button><button class="btn line" onclick="document.getElementById('backupFile').click()">백업 불러오기</button><input class="hidden" id="backupFile" type="file" accept="application/json" onchange="importBackup(event)"></div></div>
+<div class="card"><h2>사용 방법</h2><p class="muted">① 매월 월급을 받으면 ‘기간 설정’에서 시작일과 종료일을 입력해요.<br>② 지출 항목을 추가하고 매월 결제일과 금액 유형을 정해요.<br>③ 실제 결제 후 실제 금액을 입력하고 체크하면 완료 처리돼요.<br>④ 다음 월급 주기를 시작하면 이전 주기는 지난 지출에 보관되고, 항목 목록은 다음 달에도 유지돼요.</p></div>
+</section>
+</main><footer>잊지 않고 제때 낼 수 있도록, 다빈의 고정지출 기록 🤍</footer>
+</div>
+</div>
+<div class="modal" id="periodModal"><div class="modalbox"><h2>월급 관리 기간 설정</h2><div class="field"><label>시작일 · 실제 월급 입금일</label><input type="date" id="startDate"></div><div class="field"><label>종료일 · 다음 월급일 전날</label><input type="date" id="endDate"></div><p class="muted">시작일과 종료일을 각각 직접 지정해요. 월급일이 달라져도 27~34일 또는 그 외 기간 모두 설정할 수 있어요.</p><div class="actions"><button class="btn line" onclick="closePeriod()">취소</button><button class="btn" onclick="savePeriod()">저장하기</button></div></div></div>
+<div class="modal" id="expenseModal"><div class="modalbox"><h2 id="expenseModalTitle">고정지출 항목 추가</h2><input type="hidden" id="editId"><div class="field"><label>항목 이름</label><input id="expenseName" placeholder="예: 보험료, 통신비, 구독료"></div><div class="row"><div class="field"><label>매월 결제일</label><input type="number" id="expenseDay" min="1" max="31" placeholder="1~31일"></div><div class="field"><label>금액 유형</label><select id="expenseType"><option value="fixed">고정 금액 (확정)</option><option value="variable">유동 금액 (예상)</option></select></div></div><div class="field"><label id="amountLabel">확정 금액 (원)</label><input type="number" id="expenseAmount" min="0" placeholder="금액 입력"></div><div class="field"><label>메모 (선택)</label><input id="expenseMemo" placeholder="자동이체 / 카드 결제 등"></div><div class="actions"><button class="btn line" onclick="closeExpense()">취소</button><button class="btn" onclick="saveExpense()">저장하기</button></div></div></div>
+<div class="modal" id="paymentModal"><div class="modalbox"><h2 id="paymentTitle">실제 지출 입력</h2><input type="hidden" id="paymentKey"><div class="field"><label>실제 지출 확정 금액 (원)</label><input type="number" min="0" id="paymentAmount" placeholder="실제로 결제된 금액"></div><p class="muted">실제 금액을 저장하고 결제 완료로 체크할 수 있어요.</p><div class="actions"><button class="btn line" onclick="closePayment()">취소</button><button class="btn" onclick="savePayment()">저장 및 완료</button></div></div></div>
+<script>
+const DB_KEY='dabin-fixed-expense-manager-v1';
+const emptyDB=()=>({theme:'white',templates:[],cycles:[],current:{start:'',end:'',payments:{}}});
+let db=readDB();
+function readDB(){try{return Object.assign(emptyDB(),JSON.parse(localStorage.getItem(DB_KEY)||'{}'))}catch(e){return emptyDB()}}
+function persist(){localStorage.setItem(DB_KEY,JSON.stringify(db));render();if(window.queueLedgerCloudSave)window.queueLedgerCloudSave();}
+const $=id=>document.getElementById(id),won=n=>(Number(n)||0).toLocaleString('ko-KR')+'원';
+const dateOf=s=>s?new Date(s+'T12:00:00'):null;
+const iso=d=>`${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
+const pretty=s=>{const d=dateOf(s);return d?`${d.getFullYear()}년 ${d.getMonth()+1}월 ${d.getDate()}일`:''};
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+function monthLabel(start){if(!start)return '월급 관리 기간을 설정해 주세요';const d=dateOf(start);return `${d.getFullYear()}년 ${d.getMonth()+1}월 월급 관리`;}
+function dueDates(day){const s=dateOf(db.current.start),e=dateOf(db.current.end);if(!s||!e)return [];let cursor=new Date(s.getFullYear(),s.getMonth(),1),out=[];while(cursor<=e){const y=cursor.getFullYear(),m=cursor.getMonth(),last=new Date(y,m+1,0).getDate(),d=new Date(y,m,Math.min(Number(day),last));if(d>=s&&d<=e)out.push(iso(d));cursor=new Date(y,m+1,1);}return out;}
+function currentRows(){const out=[];db.templates.forEach(t=>dueDates(t.day).forEach(date=>{const key=t.id+'|'+date,p=db.current.payments[key]||{};out.push({...t,date,key,actual:p.actual??'',paid:!!p.paid});}));return out.sort((a,b)=>a.date.localeCompare(b.date)||a.name.localeCompare(b.name));}
+function render(){
+ document.body.dataset.theme=db.theme||'white';document.querySelectorAll('[data-theme]').forEach(b=>b.classList.toggle('selected',b.dataset.theme===(db.theme||'white')));
+ $('cycleLabel').textContent=monthLabel(db.current.start);$('summaryTitle').textContent=db.current.start?monthLabel(db.current.start):'이번 월급 관리';
+ const rows=currentRows(),expected=rows.reduce((n,x)=>n+(Number(x.amount)||0),0),paid=rows.filter(x=>x.paid),actual=paid.reduce((n,x)=>n+(Number(x.actual!==''?x.actual:x.amount)||0),0);
+ $('expectedSum').textContent=won(expected);$('actualSum').textContent=won(actual);$('unpaidCount').textContent=(rows.length-paid.length)+'건';$('paidCount').textContent=paid.length+'건';
+ $('periodInfo').textContent=db.current.start&&db.current.end?`${pretty(db.current.start)} ~ ${pretty(db.current.end)} · 총 ${Math.round((dateOf(db.current.end)-dateOf(db.current.start))/86400000)+1}일 · 월급 시작월 기준으로 기록돼요.`:'시작일과 종료일을 직접 지정하면 해당 기간의 지출을 관리할 수 있어요.';
+ $('progressText').textContent=`${paid.length} / ${rows.length} 완료`;$('progressBar').style.width=(rows.length?paid.length/rows.length*100:0)+'%';
+ $('homeList').innerHTML=rows.length?rows.map(rowHTML).join(''):'<div class="empty">먼저 기간을 설정하고 지출 항목을 추가해 주세요 🤍</div>';
+ $('expenseList').innerHTML=db.templates.length?db.templates.slice().sort((a,b)=>a.day-b.day).map(t=>`<div class="item"><div class="item-main"><div class="item-name">${esc(t.name)} <span class="tag">${t.type==='fixed'?'고정 금액':'유동 금액'}</span></div><div class="meta">매월 ${t.day}일 · ${t.type==='fixed'?'확정':'예상'} ${won(t.amount)}${t.memo?' · '+esc(t.memo):''}</div></div><button class="btn mini soft" onclick="editExpense('${t.id}')">수정</button><button class="btn mini line" onclick="deleteExpense('${t.id}')">삭제</button></div>`).join(''):'<div class="empty">아직 등록된 항목이 없어요. ＋ 항목 추가를 눌러주세요.</div>';
+ $('historyList').innerHTML=db.cycles.length?db.cycles.slice().reverse().map((c,i)=>historyCard(c,db.cycles.length-1-i)).join(''):'<div class="empty">지난 월급 지출 기록이 아직 없어요. 새 기간을 시작하면 이전 기록이 여기에 보관돼요.</div>';
+}
+function rowHTML(x){return `<div class="item ${x.paid?'done':''}"><input class="check" type="checkbox" ${x.paid?'checked':''} onchange="togglePaid('${x.key}',this.checked)"><div class="item-main"><div class="item-name">${esc(x.name)} <span class="tag">${x.type==='fixed'?'고정':'유동'}</span></div><div class="meta">${pretty(x.date)} · ${x.type==='fixed'?'확정':'예상'} ${won(x.amount)}${x.actual!==''?' · 실제 '+won(x.actual):''}</div></div><div style="text-align:right"><div class="money">${won(x.actual!==''?x.actual:x.amount)}</div><button class="btn mini soft" style="margin-top:5px" onclick="openPayment('${x.key}')">${x.paid?'금액 수정':'실제 금액 입력'}</button></div></div>`;}
+function historyCard(c,index){const count=c.rows?.length||0,paid=c.rows?.filter(x=>x.paid).length||0;return `<div class="history-row"><div class="headrow"><div><b>${esc(c.label||monthLabel(c.start))}</b><div class="meta">${pretty(c.start)} ~ ${pretty(c.end)} · ${c.days}일</div></div><button class="btn mini soft" onclick="viewHistory(${index})">상세 보기</button></div><div class="meta">지출 완료 ${paid}/${count}건 · 실제 지출 ${won(c.actualTotal||0)}</div></div>`;}
+function viewHistory(index){const c=db.cycles.slice().reverse()[index];if(!c)return;const detail=(c.rows||[]).map(x=>`${x.paid?'☑':'□'} ${x.date} ${x.name} / ${x.paid?'실제 '+won(x.actual!==''?x.actual:x.amount):'미결제 · 예상 '+won(x.amount)}`).join('\n');alert(`${c.label||monthLabel(c.start)}\n${pretty(c.start)} ~ ${pretty(c.end)}\n\n${detail||'기록 없음'}\n\n실제 지출 합계: ${won(c.actualTotal||0)}`);}
+document.querySelectorAll('nav button').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('nav button').forEach(x=>x.classList.toggle('active',x===b));document.querySelectorAll('main section').forEach(s=>s.classList.toggle('hidden',s.id!==b.dataset.tab));}));
+document.querySelectorAll('[data-theme]').forEach(b=>b.addEventListener('click',()=>{db.theme=b.dataset.theme;persist()}));
+function openPeriod(){$('startDate').value=db.current.start||iso(new Date());$('endDate').value=db.current.end||'';$('periodModal').classList.add('show')}function closePeriod(){$('periodModal').classList.remove('show')}
+function savePeriod(){const start=$('startDate').value,end=$('endDate').value;if(!start||!end){alert('시작일과 종료일을 모두 선택해 주세요.');return}if(end<start){alert('종료일은 시작일보다 빠를 수 없어요.');return}if(db.current.start&&(start!==db.current.start||end!==db.current.end)){const rows=currentRows(),paid=rows.filter(x=>x.paid),actualTotal=paid.reduce((n,x)=>n+(Number(x.actual!==''?x.actual:x.amount)||0),0);db.cycles.push({label:monthLabel(db.current.start),start:db.current.start,end:db.current.end,days:Math.round((dateOf(db.current.end)-dateOf(db.current.start))/86400000)+1,actualTotal,rows:rows.map(x=>({name:x.name,date:x.date,type:x.type,amount:x.amount,actual:x.actual,paid:x.paid}))});}db.current={start,end,payments:{}};closePeriod();persist();}
+function openExpense(){$('expenseModalTitle').textContent='고정지출 항목 추가';['editId','expenseName','expenseDay','expenseAmount','expenseMemo'].forEach(id=>$(id).value='');$('expenseType').value='fixed';$('amountLabel').textContent='확정 금액 (원)';$('expenseModal').classList.add('show')}function closeExpense(){$('expenseModal').classList.remove('show')}
+$('expenseType').addEventListener('change',()=>{$('amountLabel').textContent=$('expenseType').value==='fixed'?'확정 금액 (원)':'예상 금액 (원)'});
+function saveExpense(){const id=$('editId').value,name=$('expenseName').value.trim(),day=Number($('expenseDay').value),amount=Number($('expenseAmount').value);if(!name||!Number.isInteger(day)||day<1||day>31||!Number.isFinite(amount)||amount<0){alert('항목 이름, 1~31일 사이 결제일, 금액을 확인해 주세요.');return}const obj={id:id||'t'+Date.now(),name,day,type:$('expenseType').value,amount,memo:$('expenseMemo').value.trim()};if(id)db.templates=db.templates.map(x=>x.id===id?obj:x);else db.templates.push(obj);closeExpense();persist();}
+function editExpense(id){const t=db.templates.find(x=>x.id===id);if(!t)return;openExpense();$('expenseModalTitle').textContent='고정지출 항목 수정';$('editId').value=t.id;$('expenseName').value=t.name;$('expenseDay').value=t.day;$('expenseType').value=t.type;$('amountLabel').textContent=t.type==='fixed'?'확정 금액 (원)':'예상 금액 (원)';$('expenseAmount').value=t.amount;$('expenseMemo').value=t.memo||'';}
+function deleteExpense(id){if(confirm('이 고정지출 항목을 삭제할까요?')){db.templates=db.templates.filter(x=>x.id!==id);persist();}}
+function togglePaid(key,checked){const p=db.current.payments[key]||{};p.paid=checked;db.current.payments[key]=p;persist();}
+function openPayment(key){const x=currentRows().find(r=>r.key===key);if(!x)return;$('paymentKey').value=key;$('paymentTitle').textContent=x.name+' · 실제 지출 확정';$('paymentAmount').value=x.actual!==''?x.actual:x.amount;$('paymentModal').classList.add('show')}function closePayment(){$('paymentModal').classList.remove('show')}
+function savePayment(){const key=$('paymentKey').value,v=$('paymentAmount').value;if(v===''||!Number.isFinite(Number(v))||Number(v)<0){alert('실제 지출 금액을 입력해 주세요.');return}db.current.payments[key]={actual:Number(v),paid:true};closePayment();persist();}
+function exportBackup(){const blob=new Blob([JSON.stringify(db,null,2)],{type:'application/json'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='다빈_고정지출_백업.json';a.click();URL.revokeObjectURL(url);}
+function importBackup(ev){const f=ev.target.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{try{const x=JSON.parse(r.result);if(!Array.isArray(x.templates)||!x.current)throw Error();db=Object.assign(emptyDB(),x);persist();alert('백업을 불러왔어요.')}catch(e){alert('올바른 백업 파일인지 확인해 주세요.')}};r.readAsText(f);ev.target.value='';}
+
+// 로그인 전에는 데이터 편집 화면을 잠그고, 로그인 후 클라우드 데이터로 교체합니다.
+window.getLocalLedgerData=()=>db;
+window.loadCloudLedgerData=(data)=>{db=Object.assign(emptyDB(),data||{});localStorage.setItem(DB_KEY,JSON.stringify(db));render();if(!db.current.start||!db.current.end)openPeriod();};
+window.setLedgerCloudReady=(ready)=>{window.__ledgerCloudReady=!!ready;};
+let cloudSaveTimer=null;
+window.queueLedgerCloudSave=()=>{if(!window.__ledgerCloudReady)return;clearTimeout(cloudSaveTimer);$('cloudStatus').textContent='저장 대기 중';cloudSaveTimer=setTimeout(async()=>{try{$('cloudStatus').textContent='저장 중…';await window.cloudSaveLedger(db);$('cloudStatus').innerHTML='<span class="sync-dot"></span>클라우드 저장 완료';}catch(e){$('cloudStatus').textContent='저장 실패 · 인터넷 연결 확인';console.error(e);}},650);};
+window.updateLedgerAuthUI=(user)=>{const logged=!!user;$('loginPanel').classList.toggle('hidden',logged);$('appContent').classList.toggle('hidden',!logged);$('logoutBtn').classList.toggle('hidden',!logged);$('cloudEmail').textContent=user?.email||'';if(!logged){$('cloudStatus').textContent='로그인 전';window.setLedgerCloudReady(false);}};
+render();
+if('serviceWorker' in navigator){window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').catch(console.warn));}
+
+</script>
+<script type="module" src="./firebase-auth.js"></script>
+</body>
+</html>
